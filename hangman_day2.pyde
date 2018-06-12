@@ -1,7 +1,8 @@
 def setup():
     size(1000, 1000)
-    global show_guy
+    global show_guy, guesses
     show_guy = False
+    guesses = []
 def draw():
     # Draw gallows
     background(150)
@@ -26,7 +27,17 @@ def draw():
         arc(300, 400, 50, 50, PI+PI/6, 2*PI - PI/6)
         ellipse(280, 340, 20, 20)
         ellipse(320, 340, 20, 20)
+        
+    # Display guessed letters
+    textSize(18)
+    text("Guesses:", 0, 50)
+    for index, letter in enumerate(guesses):
+        text(letter, index*25, 100)
     
-def keyPressed():
+def mousePressed():
     global show_guy
     show_guy = not show_guy
+    
+def keyPressed():
+    global guesses
+    guesses.append(key)
